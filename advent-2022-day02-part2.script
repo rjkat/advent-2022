@@ -1,0 +1,88 @@
+main() {
+  total = 0;
+  i = 0;
+  while (1) {
+    theirs = read_theirs();
+    if (theirs < 0) {
+      break;
+    }
+    result = read_desired_result();
+    total += get_score(result, theirs);
+    if ((i % 100) == 0) {
+      asm { @"line = " } printlnn( i );
+      asm { @"total = " } printlnn( total );
+    }
+    i++;
+  }
+  asm { @"line = " } printlnn( i );
+  asm { @"total = " } printlnn( total );
+}
+
+read_theirs() {
+  theirs = 0;
+  asm { 
+    in
+    in
+    pop
+  }
+  if (theirs < 0) {
+    return -1;
+  }
+  tmp = theirs;
+  asm {
+    pop
+  }
+  return tmp - 65;
+}
+
+read_desired_result()
+{
+  mine = 0; 
+  asm { 
+    in
+    in
+    pop
+  }
+  tmp = mine;
+  asm {
+    pop
+  }
+  return tmp - 88;
+}
+
+get_score( result, theirs )
+{
+  mine = (theirs + 2) % 3;
+  if (result == 1) {
+    mine = theirs;
+  } else {
+    if (result == 2) {
+      mine = (theirs + 1) % 3;
+    }
+  }
+  score = mine + 1;
+  if ( mine == theirs ) {
+    score += 3;
+  } else {
+    if ( ((mine + 1) % 3) != theirs ) {
+      score += 6;
+    } 
+  } 
+  return score;
+}
+
+
+printlnn( x )
+{
+  __outn(x); 
+  asm{ 
+    @"\n"
+  }
+}
+
+println( x )
+{
+  __out(x); 
+  asm{ @"\n" }
+}
+
