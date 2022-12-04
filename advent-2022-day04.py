@@ -23,8 +23,7 @@ def main():
         ['expect', expect_filename],
     )
     lines = ret.decode().split('\r\n')
-    result = lines[-3]
-    print(result)
+    print('\n'.join(lines[-6:-2]))
 
 if __name__ == '__main__':
     main()
