@@ -1,0 +1,93 @@
+rock columns
+listen to line
+while line isn't empty
+index is 1
+split line into chars
+while index is less than chars
+let x be line at index
+if x is "1"
+break
+
+if x isn't " "
+put index without 1 into y 
+put y over 4 into y
+let col be columns at y
+if col is mysterious
+rock col
+roll col
+
+rock col with x
+let columns at y be col
+
+build index up, up, up, up
+
+listen to line
+
+
+
+pushCrate wants toIndex and crate
+let col be columns at toIndex
+rock newCol with crate
+while col isn't empty
+roll col into x
+rock newCol with x
+
+let columns at toIndex be newCol
+send it back
+
+
+popCrate wants fromIndex
+let col be columns at fromIndex
+roll col into crate
+give it back
+
+
+moveCratesPartOne wants n, fromIndex and toIndex
+while n ain't gone
+knock n down
+Put popCrate taking fromIndex into crate
+pushCrate taking toIndex, crate
+
+give it back
+
+
+moveCratesPartTwo wants n, fromIndex and toIndex
+rock crates
+while n ain't gone
+knock n down
+Put popCrate taking fromIndex into crate
+let crates at n be crate
+
+while crates ain't gone
+roll crates into crate
+pushCrate taking toIndex, crate
+
+give it back
+
+
+listen to line
+while line isn't empty
+cut line into words with " "
+roll words into w
+roll words into count
+roll words into w
+roll words into fromIndex
+knock fromIndex down
+roll words into w
+roll words into toIndex
+knock toIndex down
+moveCratesPartTwo taking count, fromIndex & toIndex
+listen to line
+
+
+rock result
+while columns ain't gone
+roll columns into col
+roll col into x
+rock result with x
+
+join result with ""
+shout result
+
+
+
