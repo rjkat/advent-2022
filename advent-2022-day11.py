@@ -1,6 +1,6 @@
 import numpy as np
 from dataclasses import dataclass
-from typing import List, Optional, Any
+from typing import List, Optional, Any, Tuple
 
 @dataclass
 class Monkey:
@@ -12,7 +12,7 @@ class Monkey:
     n_inspected: int = 0
     part_1: bool = False
 
-    def inspect(self) -> Optional[int]:
+    def inspect(self) -> Tuple[List[int], List[int]]:
         recipients = []
         items = []
         for item in self.items:

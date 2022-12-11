@@ -10,7 +10,7 @@ x = np.cumsum(x)[:-1]
 total = 0
 for n in (20, 60, 100, 140, 180, 220):
     total += x[n - 1] * n
-
+print(total)
 width = 40
 crt = np.arange(len(x)) % width
 print('\n'.join([
