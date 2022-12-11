@@ -10,14 +10,13 @@ class Monkey:
     divisor: int
     throw_to: Any
     n_inspected: int = 0
-    part_1: bool = False
 
-    def inspect(self) -> Tuple[List[int], List[int]]:
+    def inspect(self, part_1=False) -> Tuple[List[int], List[int]]:
         recipients = []
         items = []
         for item in self.items:
             item = self.apply_rule(item)
-            if self.part_1:
+            if part_1:
                 item //= 3
             recipients.append(self.throw_to(item))
             items.append(item)
@@ -76,9 +75,10 @@ for m in monkeys:
     factor *= m.divisor
 
 rounds = 10000
+part_1 = False
 for i in range(rounds):
     for m in monkeys:
-        recipients, items = m.inspect()
+        recipients, items = m.inspect(part_1=part_1)
         for (r, item) in zip(recipients, items):
             item %= factor
             monkeys[r].items.append(item)
